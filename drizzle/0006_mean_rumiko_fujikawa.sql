@@ -1,0 +1,1 @@
+ALTER TABLE `operational_restrictions` ADD `maxConcurrentAbsences` int;

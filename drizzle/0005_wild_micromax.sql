@@ -1,0 +1,1 @@
+ALTER TABLE `job_execution_logs` ADD `durationMs` int;

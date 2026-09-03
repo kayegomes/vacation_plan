@@ -1,0 +1,1 @@
+ALTER TABLE `email_deliveries` MODIFY COLUMN `notificationType` enum('alert','test','weekly_summary') NOT NULL;

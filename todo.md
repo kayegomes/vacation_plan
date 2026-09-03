@@ -1,0 +1,77 @@
+# Project TODO
+
+- [x] Inicializar aplicação web full-stack com autenticação, banco de dados e servidor.
+- [x] Definir entidades, relações e regras de validação para colaboradores, estruturas organizacionais, ciclos, períodos, aprovações, alertas e auditoria.
+- [x] Criar perfis de acesso para consulta, planejamento, aprovação e administração, aplicados tanto na interface quanto na API.
+- [x] Implementar cadastro único de colaboradores com nome, cargo, grupo operacional, base, data de admissão e situação ativa.
+- [x] Implementar manutenção de cargos, grupos operacionais e bases para filtros e regras de cobertura.
+- [x] Implementar gestão de ciclos de férias com direito, vencimento, abono, períodos fracionados, saldo calculado e justificativas de exceção.
+- [x] Implementar fluxo de períodos de férias com rascunho, solicitação, aprovação, rejeição, cancelamento e conclusão.
+- [x] Registrar histórico de alterações e trilha de auditoria para cadastros, ciclos, períodos e aprovações.
+- [x] Criar painel inicial com indicadores de vencimentos, solicitações pendentes, saldos negativos e conflitos abertos.
+- [x] Criar calendário consolidado responsivo com filtros por período, cargo, grupo, base e status e destaque de sobreposições.
+- [x] Implementar regras configuráveis de conflito de ausência por cargo, grupo, base e período.
+- [x] Implementar importação assistida de Excel com prévia, validação, pendências, reconciliação e confirmação de publicação.
+- [x] Implementar exportação filtrada para Excel e CSV.
+- [x] Implementar alertas internos para vencimentos próximos, vencidos, solicitações pendentes, saldos negativos e conflitos.
+- [x] Integrar notificações por e-mail quando a política de comunicação e os destinatários forem aprovados.
+- [x] Implementar verificação diária idempotente de vencimentos, pendências, inconsistências e conflitos.
+- [x] Registrar data, hora, duração, resultados e erros de cada execução automática.
+- [x] Criar testes unitários de regras de férias, saldo, conflitos, permissões e rotinas automáticas.
+- [x] Validar responsividade, acessibilidade, interface e fluxos críticos em cada incremento.
+- [x] Documentar regras de negócio, processo de migração, operação e recuperação de dados.
+- [x] Adicionar chaves estrangeiras e relações formais entre colaboradores, estruturas organizacionais, ciclos, períodos, histórico de aprovação, alertas e auditoria.
+- [x] Criar schemas de validação de entrada para colaboradores, ciclos, períodos, aprovações, alertas e filtros da API.
+- [x] Cobrir com testes as transições de aprovação, justificativas obrigatórias de exceção, integridade referencial e consistência de alertas.
+- [x] Adicionar ao painel inicial um indicador real de saldo negativo por ciclo, complementando os indicadores de planejamento.
+- [x] Implementar estado de carregamento explícito para os indicadores do painel, sem apresentar totais provisórios como dados definitivos.
+- [x] Criar schema de validação para criação, atualização de status, tratativa e filtros de alertas.
+- [x] Aplicar os schemas de validação nas procedures tRPC correspondentes para rejeitar entradas inválidas em tempo de execução.
+- [x] Criar testes de validação de alertas e de uso efetivo dos schemas nas consultas e mutações da API.
+- [x] Criar e ativar, após a publicação da aplicação, a rotina diária de verificação via agendamento gerenciado pela plataforma.
+- [x] Adicionar duração calculada ao registro de cada execução da rotina diária.
+- [x] Criar filtros de alertas por status, categoria, severidade, período, colaborador, base, grupo e cargo.
+- [x] Formalizar o schema técnico de criação de alertas do sistema e aplicá-lo às rotinas que geram ocorrências.
+- [x] Validar a publicação da importação com uma cópia de trabalho da planilha real antes de executar a carga oficial.
+- [x] Gerar e revisar a prévia controlada da planilha real antes de solicitar confirmação de publicação.
+- [x] Publicar o lote oficial autorizado da planilha e validar os registros persistidos contra a prévia aprovada.
+- [ ] Reconciliar efetivamente os 142 períodos pendentes, ou descartá-los com justificativa, antes de incluí-los no calendário e no saldo.
+- [x] Paginar a fila de reconciliação para manter a análise de períodos pendentes operacional e legível.
+- [ ] Revalidar os totais finais de períodos e calendários após a resolução auditável da fila de reconciliação.
+- [x] Adicionar uma validação automatizada da resolução de reconciliação, cobrindo vínculo ao ciclo do colaborador e atualização de status da pendência.
+- [x] Permitir edição auditável de colaboradores, cargos, grupos, bases, ciclos, períodos e restrições já cadastrados.
+- [x] Configurar limite máximo de ausências simultâneas por cargo, grupo e base, além das janelas de bloqueio já disponíveis.
+- [x] Adicionar validação verificável de acessibilidade e fluxos críticos: navegação por teclado, foco, semântica, estados de erro e jornadas responsivas principais.
+- [x] Ampliar testes de API para alertas: filtros válidos e inválidos, combinações de tratativa e rejeição de entradas inválidas antes da camada de dados.
+- [x] Corrigir a consulta de agendamento diário para retornar um valor explícito quando nenhuma rotina estiver configurada.
+- [x] Implementar notificações por e-mail configuráveis para vencimentos, pendências, saldos negativos, conflitos e falhas de rotina, com destinatários e histórico de envio.
+- [x] Cadastrar um destinatário autorizado e validar o recebimento de um e-mail de teste antes de ativar os avisos automáticos.
+- [x] Remover a assinatura “Valeessa” da navegação e das mensagens transacionais, mantendo somente a marca “Férias”.
+- [x] Corrigir a sobreposição entre a navegação lateral e o cartão informativo em alturas de viewport menores.
+- [x] Implementar criação de alerta `job_failure` e envio de e-mail quando a verificação diária manual ou agendada falhar.
+- [x] Adicionar testes automatizados para falha da rotina diária, incluindo alerta e notificação de destinatários ativos.
+- [x] Verificar no histórico persistido a entrega de teste de e-mail confirmada pelo usuário antes de concluir a validação do destinatário.
+- [x] Criar um Guia de uso acessível pela navegação, com orientações por perfil e passo a passo dos fluxos operacionais principais.
+- [x] Permitir descartar um período pendente com justificativa auditável, sem incluí-lo no calendário ou no saldo.
+- [x] Manter a verificação interna diária e enviar o resumo de e-mails semanalmente, às segundas-feiras às 08:00 no horário de Brasília, atualizando os agendamentos publicados e a comunicação do sistema.
+- [x] Confirmar a publicação da versão que inclui o endpoint `/api/scheduled/weekly-vacation-email` antes de manter o cron semanal ativo.
+- [x] Validar o callback semanal contra a versão publicada e registrar uma evidência de execução bem-sucedida, seguida da restauração da agenda semanal e dos destinatários ativos.
+- [x] Atualizar a descrição persistida da rotina diária para informar que os e-mails regulares são semanais e apenas falhas críticas são imediatas.
+- [x] Remover todas as referências visíveis e transacionais à marca “Valeessa”, incluindo a tela inicial de acesso, título e comunicações.
+- [x] Substituir o login Manus por autenticação própria por e-mail e senha, com sessão segura, bloqueio de acesso inativo e preservação dos perfis existentes.
+- [x] Criar a administração de contas internas com convite por e-mail, ativação de acesso, troca de senha e redefinição de senha auditáveis.
+- [ ] Migrar o administrador atual para uma conta interna e validar os acessos de consulta, planejamento, aprovação e administração antes de desativar o login Manus.
+- [x] Criar a conta administradora interna e enviar um convite seguro para definição de senha.
+- [x] Corrigir o fluxo de ativação quando um convite interno válido for rejeitado como inválido, expirado ou já utilizado.
+- [x] Remover a contingência de autenticação Manus após confirmar o acesso da primeira administradora interna.
+- [x] Confirmar no banco a ativação da conta interna administradora e registrar a migração como concluída.
+- [ ] Validar com contas internas os perfis de consulta, planejamento e aprovação, confirmando acesso e bloqueios corretos após a remoção do login Manus.
+- [x] Adicionar testes automatizados de autenticação interna e autorização por perfil nas rotas e telas principais.
+
+- [x] Implementar fluxo autenticado de troca de senha com validação da senha atual, nova senha, confirmação e auditoria persistida.
+- [x] Adicionar testes automatizados das telas de login interno, redefinição de senha, redirecionamento para `/entrar` e bloqueios visuais por perfil.
+
+- [x] Adicionar teste automatizado de redirecionamento para `/entrar` quando não houver sessão interna válida.
+- [x] Adicionar testes de interface para bloqueios visuais por perfil, verificando ações e módulos conforme consulta, planejamento, aprovação e administração.
+- [ ] Auditar o repositório antes do envio ao GitHub e garantir que segredos, tokens, arquivos de ambiente e dados sensíveis não sejam versionados.
+- [ ] Publicar o código sanitizado no repositório kayegomes/vacation_plan e confirmar a revisão remota.

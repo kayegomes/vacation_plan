@@ -1,0 +1,15 @@
+import { useAuth } from "@/_core/hooks/useAuth";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { trpc } from "@/lib/trpc";
+import { KeyRound, ShieldCheck } from "lucide-react";
+import { FormEvent, useState } from "react";
+
+export default function AccountSecurityPage() {
+  const { user } = useAuth();
+  const [currentPassword, setCurrentPassword] = useState(""); const [password, setPassword] = useState(""); const [confirmation, setConfirmation] = useState("");
+  const change = trpc.auth.changeInternalPassword.useMutation({ onSuccess: () => { setCurrentPassword(""); setPassword(""); setConfirmation(""); } });
+  async function submit(event: FormEvent) { event.preventDefault(); await change.mutateAsync({ currentPassword, password, confirmation }); }
+  return <div className="mx-auto max-w-3xl"><header className="border-b border-[#dce1da] pb-7"><p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#65766d]">Conta</p><h1 className="mt-3 font-display text-4xl leading-none text-[#173f35] sm:text-5xl">Segurança da conta</h1><p className="mt-3 max-w-2xl text-sm leading-6 text-[#617067] sm:text-base">Atualize sua senha e mantenha o acesso à sua conta interna protegido.</p></header><section className="mt-7 max-w-xl rounded-3xl border border-[#dce1da] bg-white p-5 shadow-[0_8px_24px_rgba(37,58,48,0.04)] sm:p-6"><div className="flex gap-3 rounded-2xl bg-[#edf3eb] p-4"><ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-[#23604b]" /><p className="text-sm leading-6 text-[#40594f]">Conta conectada: <strong>{user?.email}</strong>. A senha deve ter ao menos 12 caracteres.</p></div><form onSubmit={submit} className="mt-6 space-y-4"><div className="space-y-2"><Label htmlFor="current-password">Senha atual</Label><Input id="current-password" type="password" autoComplete="current-password" value={currentPassword} onChange={event => setCurrentPassword(event.target.value)} required /></div><div className="space-y-2"><Label htmlFor="new-password">Nova senha</Label><Input id="new-password" type="password" autoComplete="new-password" minLength={12} value={password} onChange={event => setPassword(event.target.value)} required /></div><div className="space-y-2"><Label htmlFor="confirm-password">Confirme a nova senha</Label><Input id="confirm-password" type="password" autoComplete="new-password" minLength={12} value={confirmation} onChange={event => setConfirmation(event.target.value)} required /></div>{change.error && <p role="alert" className="rounded-xl border border-[#f0c1b6] bg-[#fff5f2] px-3 py-2 text-sm text-[#8f3c2c]">{change.error.message}</p>}{change.isSuccess && <p role="status" className="rounded-xl bg-[#edf3eb] px-3 py-2 text-sm text-[#23604b]">Senha atualizada com sucesso.</p>}<Button type="submit" disabled={change.isPending} className="h-11 w-full rounded-xl bg-[#173f35] text-white hover:bg-[#0f3027]"><KeyRound className="mr-2 h-4 w-4" />{change.isPending ? "Atualizando…" : "Atualizar senha"}</Button></form></section></div>;
+}
